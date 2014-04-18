@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  * @author rodrigo
@@ -14,9 +16,7 @@ import javax.persistence.Id;
  */
 @Entity
 public class Arrival implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 5165938205482285921L;
 
 	@Id
@@ -25,15 +25,16 @@ public class Arrival implements Serializable {
 	private Date arrivalDate;
 	private String containersDescriptions;
 	private String shipOrigin;
+	
+	@OneToOne
 	private Ship ship;
 	
+	@OneToMany
 	private List<Container> containers;
 
 	public Arrival() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-
 	
 	public int getJpaid() {
 		return jpaid;
@@ -82,10 +83,5 @@ public class Arrival implements Serializable {
 	public void setContainers(List<Container> containers) {
 		this.containers = containers;
 	}
-
-
-
-
-
 
 }

@@ -13,9 +13,6 @@ import javax.persistence.Id;
 @Entity
 public class Ship implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -8849836658792950881L;
 
 	@Id
@@ -31,7 +28,6 @@ public class Ship implements Serializable {
 	
 	public Ship() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getJpaid() {
@@ -89,7 +85,5 @@ public class Ship implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	
 	
 }

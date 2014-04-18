@@ -12,9 +12,7 @@ import javax.persistence.Id;
  */
 @Entity
 public class Container implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 6715169840103633823L;
 
 	@Id
@@ -28,7 +26,6 @@ public class Container implements Serializable {
 
 	public Container() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getJpaid() {
