@@ -3,6 +3,8 @@ package uy.edu.ort.arqliv.obligatorio.dominio;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -18,6 +20,7 @@ public class Container implements Serializable {
 	private static final long serialVersionUID = 6715169840103633823L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int jpaid;
 
 	private String brand;
