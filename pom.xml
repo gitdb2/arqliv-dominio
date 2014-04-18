@@ -4,7 +4,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
   <modelVersion>4.0.0</modelVersion>
   <groupId>uy.edu.ort.arqliv.obligatorio1</groupId>
   <artifactId>dominio</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1</version>
   
   <properties>
 
@@ -31,15 +31,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	
 	<dependencies>
 	
-	    <!-- tag::joda[] -->
-  
-        <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-            <version>2.2</version>
-        </dependency>
-  
-    <!-- end::joda[] -->
 	
 		<!-- Spring and Transactions -->
 		<dependency>
@@ -92,7 +83,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	</dependencies>	
 	
 	
-	
+	<!-- 
 	<build>
         <plugins>
             <plugin>
@@ -118,6 +109,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
             </plugin>
         </plugins>
     </build>
-	
+	 -->
 	
 </project>
