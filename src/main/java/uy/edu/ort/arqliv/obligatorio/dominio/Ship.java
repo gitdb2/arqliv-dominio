@@ -2,6 +2,7 @@ package uy.edu.ort.arqliv.obligatorio.dominio;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,7 +23,7 @@ public class Ship implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int jpaid;
+	private long jpaid;
 
 	private double capacity;
 	private int code;
@@ -30,6 +31,7 @@ public class Ship implements Serializable {
 	private String flag;
 
 	private int manufactoringYear;
+	@Column(columnDefinition="TEXT")
 	private String name;
 	
 	public Ship() {
@@ -37,11 +39,11 @@ public class Ship implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public int getJpaid() {
+	public long getJpaid() {
 		return jpaid;
 	}
 
-	public void setJpaid(int jpaid) {
+	public void setJpaid(long jpaid) {
 		this.jpaid = jpaid;
 	}
 
