@@ -23,11 +23,15 @@ public class Ship implements Serializable {
 	private long jpaid;
 
 	private double capacity;
+	
 	private int code;
+	
 	private int crewQuantity;
+	
 	private String flag;
-
+	
 	private int manufactoringYear;
+	
 	@Column(columnDefinition="TEXT")
 	private String name;
 	

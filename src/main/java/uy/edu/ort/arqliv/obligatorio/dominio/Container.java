@@ -21,10 +21,14 @@ public class Container implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long jpaid;
+	
 	@Column(columnDefinition="TEXT")
 	private String brand;
+	
 	private double capacity;
+	
 	private int code;
+	
 	@Column(columnDefinition="TEXT")
 	private String model;
 

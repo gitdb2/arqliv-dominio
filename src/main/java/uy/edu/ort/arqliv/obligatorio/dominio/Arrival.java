@@ -27,8 +27,10 @@ public class Arrival implements Serializable {
 	private long jpaid;
 	
 	private Date arrivalDate;
+	
 	@Column(columnDefinition="TEXT")
 	private String containersDescriptions;
+	
 	@Column(columnDefinition="TEXT")
 	private String shipOrigin;
 	
