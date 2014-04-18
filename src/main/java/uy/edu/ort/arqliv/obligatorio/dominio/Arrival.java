@@ -4,7 +4,10 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -20,10 +23,13 @@ public class Arrival implements Serializable {
 	private static final long serialVersionUID = 5165938205482285921L;
 
 	@Id
-	private int jpaid;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long jpaid;
 	
 	private Date arrivalDate;
+	@Column(columnDefinition="TEXT")
 	private String containersDescriptions;
+	@Column(columnDefinition="TEXT")
 	private String shipOrigin;
 	
 	@OneToOne
@@ -36,11 +42,11 @@ public class Arrival implements Serializable {
 		super();
 	}
 	
-	public int getJpaid() {
+	public long getJpaid() {
 		return jpaid;
 	}
 
-	public void setJpaid(int jpaid) {
+	public void setJpaid(long jpaid) {
 		this.jpaid = jpaid;
 	}
 

@@ -2,7 +2,10 @@ package uy.edu.ort.arqliv.obligatorio.dominio;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -16,7 +19,8 @@ public class Ship implements Serializable {
 	private static final long serialVersionUID = -8849836658792950881L;
 
 	@Id
-	private int jpaid;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long jpaid;
 
 	private double capacity;
 	private int code;
@@ -24,17 +28,18 @@ public class Ship implements Serializable {
 	private String flag;
 
 	private int manufactoringYear;
+	@Column(columnDefinition="TEXT")
 	private String name;
 	
 	public Ship() {
 		super();
 	}
 
-	public int getJpaid() {
+	public long getJpaid() {
 		return jpaid;
 	}
 
-	public void setJpaid(int jpaid) {
+	public void setJpaid(long jpaid) {
 		this.jpaid = jpaid;
 	}
 
