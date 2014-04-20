@@ -38,6 +38,17 @@ public class Ship implements Serializable {
 	public Ship() {
 		super();
 	}
+	
+	public Ship(double capacity, int code, int crewQuantity, String flag,
+			int manufactoringYear, String name) {
+		super();
+		this.capacity = capacity;
+		this.code = code;
+		this.crewQuantity = crewQuantity;
+		this.flag = flag;
+		this.manufactoringYear = manufactoringYear;
+		this.name = name;
+	}
 
 	public long getJpaid() {
 		return jpaid;
@@ -94,5 +105,19 @@ public class Ship implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	@Override
+	public String toString() {
+		return "Ship [jpaid=" + jpaid + ", capacity=" + capacity + ", code="
+				+ code + ", crewQuantity=" + crewQuantity + ", flag=" + flag
+				+ ", manufactoringYear=" + manufactoringYear + ", name=" + name
+				+ "]";
+	}
+
+
+
+	
+	
+	
 	
 }
