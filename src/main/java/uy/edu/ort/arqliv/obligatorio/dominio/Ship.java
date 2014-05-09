@@ -113,11 +113,5 @@ public class Ship implements Serializable {
 				+ ", manufactoringYear=" + manufactoringYear + ", name=" + name
 				+ "]";
 	}
-
-
-
-	
-	
-	
 	
 }
