@@ -6,13 +6,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
-
 
 /**
  * @author rodrigo
@@ -20,14 +15,10 @@ import javax.persistence.OneToOne;
  * @created 18-Apr-2014 1:05:53 PM
  */
 @Entity
-public class Arrival implements Serializable {
+public class Arrival extends PersistentEntity implements Serializable {
 
 	private static final long serialVersionUID = 5165938205482285921L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long jpaid;
-	
 	private Date arrivalDate;
 	
 	@Column(columnDefinition="TEXT")
@@ -46,14 +37,6 @@ public class Arrival implements Serializable {
 		super();
 	}
 	
-	public long getJpaid() {
-		return jpaid;
-	}
-
-	public void setJpaid(long jpaid) {
-		this.jpaid = jpaid;
-	}
-
 	public Date getArrivalDate() {
 		return arrivalDate;
 	}

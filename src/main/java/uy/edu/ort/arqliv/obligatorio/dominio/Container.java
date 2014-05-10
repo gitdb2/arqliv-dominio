@@ -4,9 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 /**
  * @author rodrigo
@@ -14,14 +11,10 @@ import javax.persistence.Id;
  * @created 18-Apr-2014 1:05:53 PM
  */
 @Entity
-public class Container implements Serializable {
+public class Container extends PersistentEntity implements Serializable {
 
 	private static final long serialVersionUID = 6715169840103633823L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long jpaid;
-	
 	@Column(columnDefinition="TEXT")
 	private String brand;
 	
@@ -34,14 +27,6 @@ public class Container implements Serializable {
 
 	public Container() {
 		super();
-	}
-
-	public long getJpaid() {
-		return jpaid;
-	}
-
-	public void setJpaid(long jpaid) {
-		this.jpaid = jpaid;
 	}
 
 	public String getBrand() {

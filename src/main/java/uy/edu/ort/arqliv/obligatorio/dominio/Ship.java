@@ -4,12 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-
 
 /**
  * @author rodrigo
@@ -21,13 +17,9 @@ import javax.persistence.NamedQuery;
 @NamedQuery(name="Ship.findByFlag", query="SELECT s FROM Ship s WHERE s.flag = :flag"),
 @NamedQuery(name="Ship.findByName", query="SELECT s FROM Ship s WHERE s.name = :name")
 })   
-public class Ship implements Serializable {
+public class Ship extends PersistentEntity implements Serializable  {
 
 	private static final long serialVersionUID = -8849836658792950881L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long jpaid;
 
 	private double capacity;
 	
@@ -55,14 +47,6 @@ public class Ship implements Serializable {
 		this.flag = flag;
 		this.manufactoringYear = manufactoringYear;
 		this.name = name;
-	}
-
-	public long getJpaid() {
-		return jpaid;
-	}
-
-	public void setJpaid(long jpaid) {
-		this.jpaid = jpaid;
 	}
 
 	public double getCapacity() {
@@ -115,7 +99,7 @@ public class Ship implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Ship [jpaid=" + jpaid + ", capacity=" + capacity + ", code="
+		return "Ship [jpaid=" + getId() + ", capacity=" + capacity + ", code="
 				+ code + ", crewQuantity=" + crewQuantity + ", flag=" + flag
 				+ ", manufactoringYear=" + manufactoringYear + ", name=" + name
 				+ "]";
