@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -27,10 +29,10 @@ public class Arrival extends PersistentEntity implements Serializable {
 	@Column(columnDefinition="TEXT")
 	private String shipOrigin;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.MERGE)
 	private Ship ship;
 	
-	@OneToMany
+	@OneToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
 	private List<Container> containers;
 
 	public Arrival() {
@@ -75,6 +77,14 @@ public class Arrival extends PersistentEntity implements Serializable {
 
 	public void setContainers(List<Container> containers) {
 		this.containers = containers;
+	}
+
+	@Override
+	public String toString() {
+		return "Arrival [arrivalDate=" + arrivalDate
+				+ ", containersDescriptions=" + containersDescriptions
+				+ ", shipOrigin=" + shipOrigin + ", ship=" + ship
+				+ ", containers=" + containers + "]";
 	}
 
 }

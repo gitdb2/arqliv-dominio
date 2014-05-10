@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  * @author rodrigo
@@ -11,6 +13,7 @@ import javax.persistence.Entity;
  * @created 18-Apr-2014 1:05:53 PM
  */
 @Entity
+@NamedQueries({ @NamedQuery(name="Container.findByModel", query="SELECT c FROM Container c WHERE c.model = :model")})
 public class Container extends PersistentEntity implements Serializable {
 
 	private static final long serialVersionUID = 6715169840103633823L;
@@ -59,6 +62,12 @@ public class Container extends PersistentEntity implements Serializable {
 
 	public void setModel(String model) {
 		this.model = model;
+	}
+
+	@Override
+	public String toString() {
+		return "Container [brand=" + brand + ", capacity=" + capacity
+				+ ", code=" + code + ", model=" + model + "]";
 	}
 
 }
