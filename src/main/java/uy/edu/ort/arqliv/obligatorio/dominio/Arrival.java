@@ -9,10 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+
 
 /**
  * @author rodrigo
@@ -20,12 +20,6 @@ import javax.persistence.OneToOne;
  * @created 18-Apr-2014 1:05:53 PM
  */
 @Entity
-//@NamedQueries({
-//    @NamedQuery(name="Country.findAll",
-//                query="SELECT c FROM Country c"),
-//    @NamedQuery(name="Country.findByName",
-//                query="SELECT c FROM Country c WHERE c.name = :name"),
-//})   
 public class Arrival implements Serializable {
 
 	private static final long serialVersionUID = 5165938205482285921L;
