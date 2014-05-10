@@ -19,7 +19,7 @@ public class Container implements Serializable {
 	private static final long serialVersionUID = 6715169840103633823L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long jpaid;
 	
 	@Column(columnDefinition="TEXT")

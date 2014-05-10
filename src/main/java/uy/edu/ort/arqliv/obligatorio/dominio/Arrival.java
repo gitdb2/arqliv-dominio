@@ -31,7 +31,7 @@ public class Arrival implements Serializable {
 	private static final long serialVersionUID = 5165938205482285921L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long jpaid;
 	
 	private Date arrivalDate;

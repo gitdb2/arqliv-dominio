@@ -19,7 +19,7 @@ public class Ship implements Serializable {
 	private static final long serialVersionUID = -8849836658792950881L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long jpaid;
 
 	private double capacity;
@@ -113,11 +113,5 @@ public class Ship implements Serializable {
 				+ ", manufactoringYear=" + manufactoringYear + ", name=" + name
 				+ "]";
 	}
-
-
-
-	
-	
-	
 	
 }
