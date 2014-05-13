@@ -10,7 +10,7 @@ import javax.persistence.NamedQuery;
 /**
  * @author rodrigo
  * @version 1.0
- * @created 18-Apr-2014 1:05:53 PM
+ * @created 18-Apr-2014 1:05:53 PM1
  */
 @Entity
 @NamedQueries({
@@ -104,5 +104,17 @@ public class Ship extends PersistentEntity implements Serializable  {
 				+ ", manufactoringYear=" + manufactoringYear + ", name=" + name
 				+ "]";
 	}
+	
+	public String toStringConsola() {
+		return  
+				"Nombre:            " + name + "\n"+
+				"Bandera:           " +flag +"\n"+
+				"Codigo:            " + code + "\n"+
+				"Año Manufactura:   " + manufactoringYear +"\n"+
+				"Cant. Tripulacion: " + crewQuantity + "\n"+
+				"Capacidad:         " + capacity
+				;
+	}
+	
 	
 }
