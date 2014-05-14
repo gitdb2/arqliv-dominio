@@ -18,53 +18,53 @@ import javax.persistence.Version;
  */
 @Entity
 @NamedQueries({
-@NamedQuery(name="Ship.findByFlag", query="SELECT s FROM Ship s WHERE s.flag = :flag"),
-@NamedQuery(name="Ship.findByName", query="SELECT s FROM Ship s WHERE s.name = :name")
-})   
-public class Ship  implements Serializable  {
+		@NamedQuery(name = "Ship.findByFlag", query = "SELECT s FROM Ship s WHERE s.flag = :flag"),
+		@NamedQuery(name = "Ship.countUsage", query = "SELECT COUNT(a) FROM Arrival a, Ship s WHERE s.id = :id AND a.ship = s"),
+		@NamedQuery(name = "Ship.findByName", query = "SELECT s FROM Ship s WHERE s.name = :name") })
+public class Ship implements Serializable {
 
-	 	@Id
-	    @GeneratedValue(strategy = GenerationType.AUTO)
-	    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-	    @Version
-	    private Long version;
+	@Version
+	private Long version;
 
-	    public Long getId() {
-	        return id;
-	    }
+	public Long getId() {
+		return id;
+	}
 
-	    public void setId(Long id) {
-	        this.id = id;
-	    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-	    public Long getVersion() {
-	        return version;
-	    }
+	public Long getVersion() {
+		return version;
+	}
 
-	    public void setVersion(Long version) {
-	        this.version = version;
-	    }
-	
+	public void setVersion(Long version) {
+		this.version = version;
+	}
+
 	private static final long serialVersionUID = -8849836658792950881L;
 
 	private double capacity;
-	
+
 	private int code;
-	
+
 	private int crewQuantity;
-	
+
 	private String flag;
-	
+
 	private int manufactoringYear;
-	
-	@Column(columnDefinition="TEXT")
+
+	@Column(columnDefinition = "TEXT")
 	private String name;
-	
+
 	public Ship() {
 		super();
 	}
-	
+
 	public Ship(double capacity, int code, int crewQuantity, String flag,
 			int manufactoringYear, String name) {
 		super();
@@ -131,17 +131,13 @@ public class Ship  implements Serializable  {
 				+ ", manufactoringYear=" + manufactoringYear + ", name=" + name
 				+ "]";
 	}
-	
+
 	public String toStringConsola() {
-		return  
-				"Nombre:            " + name + "\n"+
-				"Bandera:           " +flag +"\n"+
-				"Codigo:            " + code + "\n"+
-				"Año Manufactura:   " + manufactoringYear +"\n"+
-				"Cant. Tripulacion: " + crewQuantity + "\n"+
-				"Capacidad:         " + capacity
-				;
+		return "Nombre:            " + name + "\n" + "Bandera:           "
+				+ flag + "\n" + "Codigo:            " + code + "\n"
+				+ "Año Manufactura:   " + manufactoringYear + "\n"
+				+ "Cant. Tripulacion: " + crewQuantity + "\n"
+				+ "Capacidad:         " + capacity;
 	}
-	
-	
+
 }
