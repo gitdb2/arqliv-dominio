@@ -4,8 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Version;
 
 /**
  * @author rodrigo
@@ -17,8 +21,31 @@ import javax.persistence.NamedQuery;
 @NamedQuery(name="Ship.findByFlag", query="SELECT s FROM Ship s WHERE s.flag = :flag"),
 @NamedQuery(name="Ship.findByName", query="SELECT s FROM Ship s WHERE s.name = :name")
 })   
-public class Ship extends PersistentEntity implements Serializable  {
+public class Ship  implements Serializable  {
 
+	 	@Id
+	    @GeneratedValue(strategy = GenerationType.AUTO)
+	    private Long id;
+
+	    @Version
+	    private Long version;
+
+	    public Long getId() {
+	        return id;
+	    }
+
+	    public void setId(Long id) {
+	        this.id = id;
+	    }
+
+	    public Long getVersion() {
+	        return version;
+	    }
+
+	    public void setVersion(Long version) {
+	        this.version = version;
+	    }
+	
 	private static final long serialVersionUID = -8849836658792950881L;
 
 	private double capacity;

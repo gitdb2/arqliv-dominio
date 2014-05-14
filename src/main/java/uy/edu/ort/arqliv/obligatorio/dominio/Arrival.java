@@ -8,8 +8,12 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Version;
 
 /**
  * @author rodrigo
@@ -17,10 +21,34 @@ import javax.persistence.OneToOne;
  * @created 18-Apr-2014 1:05:53 PM
  */
 @Entity
-public class Arrival extends PersistentEntity implements Serializable {
+public class Arrival implements Serializable {
 
 	private static final long serialVersionUID = 5165938205482285921L;
 
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Version
+    private Long version;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
+    }
+	
+	
 	private Date arrivalDate;
 	
 	@Column(columnDefinition="TEXT")
