@@ -13,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
 /**
@@ -48,7 +50,7 @@ public class Arrival implements Serializable {
         this.version = version;
     }
 	
-	
+    @Temporal(TemporalType.DATE) 
 	private Date arrivalDate;
 	
 	@Column(columnDefinition="TEXT")
