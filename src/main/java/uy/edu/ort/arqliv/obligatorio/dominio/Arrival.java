@@ -11,6 +11,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -23,6 +25,10 @@ import javax.persistence.Version;
  * @created 18-Apr-2014 1:05:53 PM
  */
 @Entity
+//@NamedQueries({
+//	@NamedQuery(name = "Arrival.findByFlag", query = "SELECT s FROM Ship s WHERE s.flag = :flag"),
+//	@NamedQuery(name = "Arrival.countUsage", query = "SELECT COUNT(a) FROM Arrival a, Ship s WHERE s.id = :id AND a.ship = s"),
+//	@NamedQuery(name = "Arrival.findByName", query = "SELECT s FROM Ship s WHERE s.name = :name") })
 public class Arrival implements Serializable {
 
 	private static final long serialVersionUID = 5165938205482285921L;
@@ -65,6 +71,9 @@ public class Arrival implements Serializable {
 	@OneToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
 	private List<Container> containers;
 
+	
+	private double shipCapacityThatDay;
+	
 	public Arrival() {
 		super();
 	}
@@ -108,13 +117,25 @@ public class Arrival implements Serializable {
 	public void setContainers(List<Container> containers) {
 		this.containers = containers;
 	}
+	
+
+	public double getShipCapacityThatDay() {
+		return shipCapacityThatDay;
+	}
+
+	public void setShipCapacityThatDay(double shipCapacityThatDay) {
+		this.shipCapacityThatDay = shipCapacityThatDay;
+	}
 
 	@Override
 	public String toString() {
-		return "Arrival [arrivalDate=" + arrivalDate
-				+ ", containersDescriptions=" + containersDescriptions
-				+ ", shipOrigin=" + shipOrigin + ", ship=" + ship
-				+ ", containers=" + containers + "]";
+		return "Arrival [id=" + id + ", version=" + version + ", arrivalDate="
+				+ arrivalDate + ", containersDescriptions="
+				+ containersDescriptions + ", shipOrigin=" + shipOrigin
+				+ ", ship=" + ship + ", containers=" + containers
+				+ ", shipCapacityThatDay=" + shipCapacityThatDay + "]";
 	}
+
+	
 
 }
