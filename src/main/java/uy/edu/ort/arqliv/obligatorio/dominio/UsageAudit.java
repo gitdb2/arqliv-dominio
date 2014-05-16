@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -15,6 +17,29 @@ import javax.persistence.Version;
 
 @Entity
 @Table(name = UsageAudit.tableName)
+@NamedQueries({
+	@NamedQuery(name = "UsageAudit.avgServiceTime", 
+		query = "SELECT NEW uy.edu.ort.arqliv.obligatorio.dominio.Pair(u.service, AVG(UNIX_TIMESTAMP(u.actionEndTime) - UNIX_TIMESTAMP(u.actionStartTime)))"
+		+ " FROM UsageAudit u "
+		+ " WHERE DATE(u.actionStartTime) = DATE(:dateFilter) "
+		+ " GROUP BY u.service "),
+			
+	@NamedQuery(name = "UsageAudit.minServiceTime", 
+		query = "SELECT NEW uy.edu.ort.arqliv.obligatorio.dominio.Pair(u.service, UNIX_TIMESTAMP(u.actionEndTime) - UNIX_TIMESTAMP(u.actionStartTime)) "
+		+ " FROM UsageAudit u"
+		+ " WHERE DATE(u.actionStartTime) = DATE(:dateFilter) "
+		+ " AND UNIX_TIMESTAMP(u.actionEndTime) - UNIX_TIMESTAMP(u.actionStartTime) "
+		+ " = (SELECT MIN(UNIX_TIMESTAMP(p.actionEndTime) - UNIX_TIMESTAMP(p.actionStartTime)) "
+		+ "    FROM UsageAudit p WHERE DATE(p.actionStartTime) = DATE(:dateFilter))"),
+			
+	@NamedQuery(name = "UsageAudit.maxServiceTime", 
+		query = "SELECT NEW uy.edu.ort.arqliv.obligatorio.dominio.Pair(u.service, UNIX_TIMESTAMP(u.actionEndTime) - UNIX_TIMESTAMP(u.actionStartTime)) "
+		+ " FROM UsageAudit u"
+		+ " WHERE DATE(u.actionStartTime) = DATE(:dateFilter) "
+		+ " AND UNIX_TIMESTAMP(u.actionEndTime) - UNIX_TIMESTAMP(u.actionStartTime) "
+		+ " = (SELECT MAX(UNIX_TIMESTAMP(p.actionEndTime) - UNIX_TIMESTAMP(p.actionStartTime)) "
+		+ "    FROM UsageAudit p WHERE DATE(p.actionStartTime) = DATE(:dateFilter))")
+})
 public class UsageAudit implements Serializable {
 	
 	private static final long serialVersionUID = -9006694511706750323L;
