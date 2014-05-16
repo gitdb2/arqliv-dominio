@@ -1,8 +1,12 @@
 package uy.edu.ort.arqliv.obligatorio.dominio;
 
-public class Pair<K, V> {
+import java.io.Serializable;
 
-    private K key;
+public class Pair<K, V> implements Serializable{
+
+	private static final long serialVersionUID = 1935058994887873346L;
+	
+	private K key;
     private V value;
 
     public Pair(K key, V value) {
@@ -29,5 +33,10 @@ public class Pair<K, V> {
     public void setValue(V value) { 
     	this.value = value; 
     }
+
+	@Override
+	public String toString() {
+		return "Servicio:" + key + ", Tiempo:" + value;
+	}
     
 }

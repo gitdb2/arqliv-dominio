@@ -25,7 +25,7 @@ import javax.persistence.Version;
 		+ " GROUP BY u.service "),
 			
 	@NamedQuery(name = "UsageAudit.minServiceTime", 
-		query = "SELECT NEW uy.edu.ort.arqliv.obligatorio.dominio.Pair(u.service, UNIX_TIMESTAMP(u.actionEndTime) - UNIX_TIMESTAMP(u.actionStartTime)) "
+		query = "SELECT DISTINCT NEW uy.edu.ort.arqliv.obligatorio.dominio.Pair(u.service, UNIX_TIMESTAMP(u.actionEndTime) - UNIX_TIMESTAMP(u.actionStartTime)) "
 		+ " FROM UsageAudit u"
 		+ " WHERE DATE(u.actionStartTime) = DATE(:dateFilter) "
 		+ " AND UNIX_TIMESTAMP(u.actionEndTime) - UNIX_TIMESTAMP(u.actionStartTime) "
@@ -33,7 +33,7 @@ import javax.persistence.Version;
 		+ "    FROM UsageAudit p WHERE DATE(p.actionStartTime) = DATE(:dateFilter))"),
 			
 	@NamedQuery(name = "UsageAudit.maxServiceTime", 
-		query = "SELECT NEW uy.edu.ort.arqliv.obligatorio.dominio.Pair(u.service, UNIX_TIMESTAMP(u.actionEndTime) - UNIX_TIMESTAMP(u.actionStartTime)) "
+		query = "SELECT DISTINCT NEW uy.edu.ort.arqliv.obligatorio.dominio.Pair(u.service, UNIX_TIMESTAMP(u.actionEndTime) - UNIX_TIMESTAMP(u.actionStartTime)) "
 		+ " FROM UsageAudit u"
 		+ " WHERE DATE(u.actionStartTime) = DATE(:dateFilter) "
 		+ " AND UNIX_TIMESTAMP(u.actionEndTime) - UNIX_TIMESTAMP(u.actionStartTime) "
