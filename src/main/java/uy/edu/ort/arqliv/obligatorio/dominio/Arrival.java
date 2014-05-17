@@ -192,47 +192,13 @@ public class Arrival implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Arrival other = (Arrival) obj;
-		if (arrivalDate == null) {
-			if (other.arrivalDate != null)
-				return false;
-		} else if (!arrivalDate.equals(other.arrivalDate))
-			return false;
-		if (containers == null) {
-			if (other.containers != null)
-				return false;
-		} else if (!containers.equals(other.containers))
-			return false;
-		if (containersDescriptions == null) {
-			if (other.containersDescriptions != null)
-				return false;
-		} else if (!containersDescriptions.equals(other.containersDescriptions))
-			return false;
+	
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (ship == null) {
-			if (other.ship != null)
-				return false;
-		} else if (!ship.equals(other.ship))
-			return false;
-		if (Double.doubleToLongBits(shipCapacityThatDay) != Double
-				.doubleToLongBits(other.shipCapacityThatDay))
-			return false;
-		if (shipOrigin == null) {
-			if (other.shipOrigin != null)
-				return false;
-		} else if (!shipOrigin.equals(other.shipOrigin))
-			return false;
-		if (Double.doubleToLongBits(shipTransportedWeightThatDay) != Double
-				.doubleToLongBits(other.shipTransportedWeightThatDay))
-			return false;
-		if (version == null) {
-			if (other.version != null)
-				return false;
-		} else if (!version.equals(other.version))
-			return false;
+	
 		return true;
 	}
 	
