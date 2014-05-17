@@ -25,10 +25,10 @@ import javax.persistence.Version;
  * @created 18-Apr-2014 1:05:53 PM
  */
 @Entity
-//@NamedQueries({
-//	@NamedQuery(name = "Arrival.findByFlag", query = "SELECT s FROM Ship s WHERE s.flag = :flag"),
-//	@NamedQuery(name = "Arrival.countUsage", query = "SELECT COUNT(a) FROM Arrival a, Ship s WHERE s.id = :id AND a.ship = s"),
-//	@NamedQuery(name = "Arrival.findByName", query = "SELECT s FROM Ship s WHERE s.name = :name") })
+@NamedQueries({
+	@NamedQuery(name = "Arrival.arrivalsByMonth", query = "SELECT a FROM Arrival a WHERE month(a.arrivalDate) = :month"),
+	@NamedQuery(name = "Arrival.arrivalsByMonthByShip", query = "SELECT a FROM Arrival a WHERE month(a.arrivalDate) = :month AND a.ship_id = :shipId")
+})
 public class Arrival implements Serializable {
 
 	private static final long serialVersionUID = 5165938205482285921L;
