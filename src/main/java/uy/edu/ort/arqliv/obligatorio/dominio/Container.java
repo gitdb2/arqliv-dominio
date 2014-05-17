@@ -20,7 +20,9 @@ import javax.persistence.Version;
 @NamedQueries({
 		@NamedQuery(name = "Container.findByModel", query = "SELECT c FROM Container c WHERE c.model = :model"),
 		@NamedQuery(name = "Container.countUsage", 
-				query = "SELECT COUNT(a) FROM Arrival a, Container c WHERE c.id = :id AND c  MEMBER OF a.containers ") })
+				query = "SELECT COUNT(a) FROM Arrival a, Container c WHERE c.id = :id AND c  MEMBER OF a.containers "),
+		@NamedQuery(name = "Container.countUsageOnDate", 
+		query = "SELECT COUNT(a) FROM Arrival a, Container c WHERE c.id = :id AND a.arrivalDate=:arrivalDate AND c  MEMBER OF a.containers ")})
 public class Container implements Serializable {
 
 	private static final long serialVersionUID = 6715169840103633823L;
