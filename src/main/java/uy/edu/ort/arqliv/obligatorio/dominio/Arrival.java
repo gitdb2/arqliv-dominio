@@ -28,7 +28,9 @@ import javax.persistence.Version;
 @NamedQueries({
 	@NamedQuery(name = "Arrival.arrivalsByMonth", query = "SELECT a FROM Arrival a WHERE month(a.arrivalDate) = :month"),
 
-	@NamedQuery(name = "Arrival.arrivalsByMonthByShip", query = "SELECT a FROM Arrival a WHERE month(a.arrivalDate) = :month AND a.ship_id = :shipId")
+	@NamedQuery(name = "Arrival.arrivalsByMonthByShip", query = "SELECT a FROM Arrival a "
+			+ "WHERE month(a.arrivalDate) = :month "
+			+ "AND a.ship.id = :shipId"),
 
 	@NamedQuery(name = "Arrival.findArrivalUsingContainerForDate", 
 			query = "SELECT a FROM Arrival a, Container c WHERE c.id = :id AND c  MEMBER OF a.containers AND a.arrivalDate= :arrivalDate"), 
