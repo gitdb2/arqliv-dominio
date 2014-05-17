@@ -85,6 +85,8 @@ public class Arrival implements Serializable {
 	
 	private double shipCapacityThatDay;
 	
+	private double shipTransportedWeightThatDay;
+	
 	public Arrival() {
 		super();
 	}
@@ -137,15 +139,50 @@ public class Arrival implements Serializable {
 		this.shipCapacityThatDay = shipCapacityThatDay;
 	}
 
+	public double getShipTransportedWeightThatDay() {
+		return shipTransportedWeightThatDay;
+	}
+
+	public void setShipTransportedWeightThatDay(double shipTransportedWeightThatDay) {
+		this.shipTransportedWeightThatDay = shipTransportedWeightThatDay;
+	}
+
 	@Override
 	public String toString() {
 		return "Arrival [id=" + id + ", version=" + version + ", arrivalDate="
 				+ arrivalDate + ", containersDescriptions="
 				+ containersDescriptions + ", shipOrigin=" + shipOrigin
 				+ ", ship=" + ship + ", containers=" + containers
-				+ ", shipCapacityThatDay=" + shipCapacityThatDay + "]";
+				+ ", shipCapacityThatDay=" + shipCapacityThatDay
+				+ ", shipTransportedWeightThatDay="
+				+ shipTransportedWeightThatDay + "]";
 	}
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((arrivalDate == null) ? 0 : arrivalDate.hashCode());
+		result = prime * result
+				+ ((containers == null) ? 0 : containers.hashCode());
+		result = prime
+				* result
+				+ ((containersDescriptions == null) ? 0
+						: containersDescriptions.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((ship == null) ? 0 : ship.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(shipCapacityThatDay);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result
+				+ ((shipOrigin == null) ? 0 : shipOrigin.hashCode());
+		temp = Double.doubleToLongBits(shipTransportedWeightThatDay);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((version == null) ? 0 : version.hashCode());
+		return result;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -155,12 +192,48 @@ public class Arrival implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Arrival other = (Arrival) obj;
+		if (arrivalDate == null) {
+			if (other.arrivalDate != null)
+				return false;
+		} else if (!arrivalDate.equals(other.arrivalDate))
+			return false;
+		if (containers == null) {
+			if (other.containers != null)
+				return false;
+		} else if (!containers.equals(other.containers))
+			return false;
+		if (containersDescriptions == null) {
+			if (other.containersDescriptions != null)
+				return false;
+		} else if (!containersDescriptions.equals(other.containersDescriptions))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (ship == null) {
+			if (other.ship != null)
+				return false;
+		} else if (!ship.equals(other.ship))
+			return false;
+		if (Double.doubleToLongBits(shipCapacityThatDay) != Double
+				.doubleToLongBits(other.shipCapacityThatDay))
+			return false;
+		if (shipOrigin == null) {
+			if (other.shipOrigin != null)
+				return false;
+		} else if (!shipOrigin.equals(other.shipOrigin))
+			return false;
+		if (Double.doubleToLongBits(shipTransportedWeightThatDay) != Double
+				.doubleToLongBits(other.shipTransportedWeightThatDay))
+			return false;
+		if (version == null) {
+			if (other.version != null)
+				return false;
+		} else if (!version.equals(other.version))
+			return false;
 		return true;
 	}
-
+	
 }
