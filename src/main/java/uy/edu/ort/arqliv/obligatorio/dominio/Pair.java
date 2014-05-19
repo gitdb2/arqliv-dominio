@@ -1,7 +1,13 @@
 package uy.edu.ort.arqliv.obligatorio.dominio;
 
 import java.io.Serializable;
-
+/**
+ * Clase generica 
+ * @author mauricio
+ *
+ * @param <K>
+ * @param <V>
+ */
 public class Pair<K, V> implements Serializable{
 
 	private static final long serialVersionUID = 1935058994887873346L;

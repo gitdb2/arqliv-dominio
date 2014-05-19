@@ -15,6 +15,11 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
+/**
+ * Clase que encapsula y representa la informacion necesaria para  auditoria y profiling
+ * @author mauricio
+ *
+ */
 @Entity
 @Table(name = UsageAudit.tableName)
 @NamedQueries({

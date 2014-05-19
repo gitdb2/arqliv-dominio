@@ -12,6 +12,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Version;
 
 /**
+ * implementacion de un contenedor
  * @author rodrigo
  * @version 1.0
  * @created 18-Apr-2014 1:05:53 PM

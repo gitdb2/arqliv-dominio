@@ -12,6 +12,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Version;
 
 /**
+ * Implementacion de Barco
  * @author rodrigo
  * @version 1.0
  * @created 18-Apr-2014 1:05:53 PM1

@@ -20,6 +20,7 @@ import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
 /**
+ * Implementacion de un arribo 
  * @author rodrigo
  * @version 1.0
  * @created 18-Apr-2014 1:05:53 PM
