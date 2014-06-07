@@ -3,10 +3,4 @@
 	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 	<persistence-unit name="persistenceUnit"/>
-<!-- 		<provider>org.hibernate.ejb.HibernatePersistence</provider>  -->
-<!-- 		<class>uy.edu.ort.arqliv.obligatorio.dominio.Ship</class>  -->
-<!-- 		<class>uy.edu.ort.arqliv.obligatorio.dominio.Arrival</class> -->
-<!-- 		<class>uy.edu.ort.arqliv.obligatorio.dominio.Container</class> -->
-<!-- 		<class>uy.edu.ort.arqliv.obligatorio.dominio.User</class> -->
-<!-- 	</persistence-unit> -->
 </persistence>
