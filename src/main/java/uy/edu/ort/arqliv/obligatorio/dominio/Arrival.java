@@ -40,7 +40,13 @@ import javax.persistence.Version;
 			query = "SELECT a FROM Arrival a, Container c WHERE "
 					+ "    a.arrivalDate = :arrivalDate "
 					+ "AND c IN (:containerList) "
-					+" AND c MEMBER OF a.containers ")
+					+" AND c MEMBER OF a.containers "),
+					
+	@NamedQuery(name = "Arrival.findArrivalByShipByDateByPort", 
+			query = "SELECT a FROM Arrival a "
+					+ "WHERE a.ship.id = :shipId "
+					+ "AND a.shipOrigin = :somePort " 
+					+ "AND DATE(a.arrivalDate) <= DATE(:someDate)")
 })
 public class Arrival implements Serializable {
 
