@@ -12,12 +12,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "Departure.findDepartureUsingContainerListForDate", 
+			query = "SELECT d FROM Departure d, Container c WHERE "
+					+ " d.departureDate = :departureDate "
+					+ " AND c IN (:containerList) "
+					+ " AND c MEMBER OF d.containers ")
+})
 public class Departure implements Serializable {
 
 	private static final long serialVersionUID = 4859636640296701809L;
