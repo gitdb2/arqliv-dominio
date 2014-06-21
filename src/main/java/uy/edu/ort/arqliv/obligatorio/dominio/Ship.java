@@ -10,6 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Version;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * Implementacion de Barco
@@ -50,17 +55,26 @@ public class Ship implements Serializable {
 
 	private static final long serialVersionUID = -8849836658792950881L;
 
+	@Min(0) @Max(999999)
 	private double capacity;
 
+	@Min(0) @Max(999999)
 	private int code;
 
+	@Min(1) @Max(1000)
 	private int crewQuantity;
 
+	@NotNull
+	@NotEmpty
 	private String flag;
 
+	@NotNull
+	@Min(1900) @Max(3000)
 	private int manufactoringYear;
 
 	@Column(columnDefinition = "TEXT")
+	@NotNull
+	@NotEmpty
 	private String name;
 
 	public Ship() {
