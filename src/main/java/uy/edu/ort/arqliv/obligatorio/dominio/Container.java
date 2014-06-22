@@ -10,6 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Version;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * implementacion de un contenedor
@@ -52,13 +57,19 @@ public class Container implements Serializable {
 	}
 
 	@Column(columnDefinition = "TEXT")
+	@NotNull
+	@NotEmpty
 	private String brand;
 
+	@Min(1) @Max(5000)
 	private double capacity;
 
+	@Min(0) @Max(999999)
 	private int code;
 
 	@Column(columnDefinition = "TEXT")
+	@NotNull
+	@NotEmpty
 	private String model;
 
 	public Container() {
