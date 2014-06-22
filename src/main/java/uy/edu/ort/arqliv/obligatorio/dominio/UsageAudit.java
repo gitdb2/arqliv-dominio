@@ -24,26 +24,26 @@ import javax.persistence.Version;
 @Table(name = UsageAudit.tableName)
 @NamedQueries({
 	@NamedQuery(name = "UsageAudit.avgServiceTime", 
-		query = "SELECT NEW uy.edu.ort.arqliv.obligatorio.dominio.Pair(u.service, AVG(UNIX_TIMESTAMP(u.actionEndTime) - UNIX_TIMESTAMP(u.actionStartTime)))"
+		query = "SELECT NEW uy.edu.ort.arqliv.obligatorio.dominio.Pair(u.service, AVG(u.actionNanoSeconds))"
 		+ " FROM UsageAudit u "
-		+ " WHERE DATE(u.actionStartTime) = DATE(:dateFilter) "
+		+ " WHERE DATE(u.actionDate) = DATE(:dateFilter) "
 		+ " GROUP BY u.service "),
 			
 	@NamedQuery(name = "UsageAudit.minServiceTime", 
-		query = "SELECT DISTINCT NEW uy.edu.ort.arqliv.obligatorio.dominio.Pair(u.service, UNIX_TIMESTAMP(u.actionEndTime) - UNIX_TIMESTAMP(u.actionStartTime)) "
+		query = "SELECT DISTINCT NEW uy.edu.ort.arqliv.obligatorio.dominio.Pair(u.service, u.actionNanoSeconds) "
 		+ " FROM UsageAudit u"
-		+ " WHERE DATE(u.actionStartTime) = DATE(:dateFilter) "
-		+ " AND UNIX_TIMESTAMP(u.actionEndTime) - UNIX_TIMESTAMP(u.actionStartTime) "
-		+ " = (SELECT MIN(UNIX_TIMESTAMP(p.actionEndTime) - UNIX_TIMESTAMP(p.actionStartTime)) "
-		+ "    FROM UsageAudit p WHERE DATE(p.actionStartTime) = DATE(:dateFilter))"),
+		+ " WHERE DATE(u.actionDate) = DATE(:dateFilter) "
+		+ " AND u.actionNanoSeconds "
+		+ " = (SELECT MIN(p.actionNanoSeconds) "
+		+ "    FROM UsageAudit p WHERE DATE(p.actionDate) = DATE(:dateFilter))"),
 			
 	@NamedQuery(name = "UsageAudit.maxServiceTime", 
-		query = "SELECT DISTINCT NEW uy.edu.ort.arqliv.obligatorio.dominio.Pair(u.service, UNIX_TIMESTAMP(u.actionEndTime) - UNIX_TIMESTAMP(u.actionStartTime)) "
+		query = "SELECT DISTINCT NEW uy.edu.ort.arqliv.obligatorio.dominio.Pair(u.service, u.actionNanoSeconds) "
 		+ " FROM UsageAudit u"
-		+ " WHERE DATE(u.actionStartTime) = DATE(:dateFilter) "
-		+ " AND UNIX_TIMESTAMP(u.actionEndTime) - UNIX_TIMESTAMP(u.actionStartTime) "
-		+ " = (SELECT MAX(UNIX_TIMESTAMP(p.actionEndTime) - UNIX_TIMESTAMP(p.actionStartTime)) "
-		+ "    FROM UsageAudit p WHERE DATE(p.actionStartTime) = DATE(:dateFilter))")
+		+ " WHERE DATE(u.actionDate) = DATE(:dateFilter) "
+		+ " AND u.actionNanoSeconds "
+		+ " = (SELECT MAX(p.actionNanoSeconds) "
+		+ "    FROM UsageAudit p WHERE DATE(p.actionDate) = DATE(:dateFilter))")
 })
 public class UsageAudit implements Serializable {
 	
@@ -72,12 +72,11 @@ public class UsageAudit implements Serializable {
 	
 	@Column
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date actionStartTime;
+	private Date actionDate;
 	
 	@Column
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date actionEndTime;
-
+	private long actionNanoSeconds;
+	
 	public Long getId() {
 		return id;
 	}
@@ -126,20 +125,21 @@ public class UsageAudit implements Serializable {
 		this.parameters = parameters;
 	}
 
-	public Date getActionStartTime() {
-		return actionStartTime;
+	public Date getActionDate() {
+		return actionDate;
 	}
 
-	public void setActionStartTime(Date actionStartTime) {
-		this.actionStartTime = actionStartTime;
+	public void setActionDate(Date actionDate) {
+		this.actionDate = actionDate;
 	}
 
-	public Date getActionEndTime() {
-		return actionEndTime;
+	public long getActionNanoSeconds() {
+		return actionNanoSeconds;
 	}
 
-	public void setActionEndTime(Date actionEndTime) {
-		this.actionEndTime = actionEndTime;
+	public void setActionNanoSeconds(long actionNanoSeconds) {
+		this.actionNanoSeconds = actionNanoSeconds;
 	}
 
 }
+
