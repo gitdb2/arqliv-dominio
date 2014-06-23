@@ -1,6 +1,7 @@
 package uy.edu.ort.arqliv.obligatorio.dominio;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -109,4 +110,14 @@ public class Departure implements Serializable {
 		this.containers = containers;
 	}
 
+	
+	public List<Long> getContainersIdList() {
+		List<Long> ret = new ArrayList<Long>();
+		if (containers != null) {
+			for (Container container : containers) {
+				ret.add(container.getId());
+			}
+		}
+		return ret;
+	}
 }
