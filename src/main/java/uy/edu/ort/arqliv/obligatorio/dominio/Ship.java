@@ -27,6 +27,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 		@NamedQuery(name = "Ship.findByFlag", query = "SELECT s FROM Ship s WHERE s.flag = :flag"),
 		@NamedQuery(name = "Ship.countUsage", query = "SELECT COUNT(a) FROM Arrival a, Ship s WHERE s.id = :id AND a.ship = s"),
 		@NamedQuery(name = "Ship.canBeUpdated", query = "SELECT CASE WHEN (COUNT(a) > 0) THEN 1 ELSE 0 END  FROM Arrival a, Ship s WHERE s.id = :id AND a.ship = s AND a.arrivalDate=:arrivalDate"),
+		@NamedQuery(name = "Ship.countUsageByDepearture", query = "SELECT COUNT(a) FROM Departure a, Ship s WHERE s.id = :id AND a.ship = s"),
+		@NamedQuery(name = "Ship.canBeUpdatedByDepearture", query = "SELECT CASE WHEN (COUNT(a) > 0) THEN 1 ELSE 0 END  FROM Departure a, Ship s WHERE s.id = :id AND a.ship = s AND a.departureDate=:departureDate"),
 		@NamedQuery(name = "Ship.findByName", query = "SELECT s FROM Ship s WHERE s.name = :name") })
 public class Ship implements Serializable {
 
