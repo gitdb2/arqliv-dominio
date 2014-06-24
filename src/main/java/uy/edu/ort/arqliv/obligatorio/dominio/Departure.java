@@ -24,7 +24,7 @@ import javax.persistence.Version;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "Departure.findDepartureUsingContainerListForDate", 
-			query = "SELECT d FROM Departure d, Container c WHERE "
+			query = "SELECT DISTINCT d FROM Departure d, Container c WHERE "
 					+ " d.departureDate = :departureDate "
 					+ " AND c IN (:containerList) "
 					+ " AND c MEMBER OF d.containers "),
@@ -45,6 +45,14 @@ import javax.persistence.Version;
 					+ " AND c MEMBER OF a.containers "
 					+ " AND a NOT IN (SELECT d.arrival FROM Departure d) "
 					),
+					
+	@NamedQuery(name = "Departure.isContainerAvailableForDepartureDifferentDeparture", 
+	query = "SELECT COUNT(*) FROM Arrival a , Container c "
+			+ " WHERE a.arrivalDate <= :departureDate "
+			+ " AND c.id = :id "
+			+ " AND c MEMBER OF a.containers "
+			+ " AND a NOT IN (SELECT d.arrival FROM Departure d WHERE d.id <> :departureId) "
+			),
 			
 	@NamedQuery(name = "Departure.departuresByMonthByShip", query = "SELECT d FROM Departure d "
 			+ "WHERE month(d.departureDate) = :month " + "AND d.ship.id = :shipId")
@@ -69,14 +77,14 @@ public class Departure implements Serializable {
 	@Column(columnDefinition="TEXT")
 	private String containersDescriptions;
 	
+	//@OneToOne(cascade=CascadeType.MERGE)
 	//@ManyToOne(cascade=CascadeType.MERGE)
+	//@ManyToOne(cascade=CascadeType.ALL)
 	@ManyToOne
 	private Ship ship;
 	
-//	@ManyToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
 	@ManyToMany(fetch=FetchType.EAGER)
 	private List<Container> containers;
-	
 	
 	private double shipTransportedWeightThatDay;
 
@@ -148,8 +156,6 @@ public class Departure implements Serializable {
 	public void setShipTransportedWeightThatDay(double shipTransportedWeightThatDay) {
 		this.shipTransportedWeightThatDay = shipTransportedWeightThatDay;
 	}
-
-	
 	
 	public double getShipCapacityThatDay() {
 		return shipCapacityThatDay;

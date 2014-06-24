@@ -77,11 +77,12 @@ public class Arrival implements Serializable {
 	@Column(columnDefinition = "TEXT")
 	private String shipOrigin;
 
+	//@OneToOne(cascade = CascadeType.MERGE)
 	//@ManyToOne(cascade = CascadeType.MERGE)
+	//@ManyToOne(cascade = CascadeType.ALL)
 	@ManyToOne
 	private Ship ship;
 
-//	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	@ManyToMany( fetch = FetchType.EAGER)
 	private List<Container> containers;
 
