@@ -66,7 +66,8 @@ public class Departure implements Serializable {
 	@OneToOne(cascade=CascadeType.MERGE)
 	private Ship ship;
 	
-	@ManyToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
+//	@ManyToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
+	@ManyToMany(fetch=FetchType.EAGER)
 	private List<Container> containers;
 	
 	
