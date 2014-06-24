@@ -28,7 +28,8 @@ import javax.validation.constraints.NotNull;
 					+ " d.departureDate = :departureDate "
 					+ " AND c IN (:containerList) "
 					+ " AND c MEMBER OF d.containers "),
-	
+	@NamedQuery(name = "Departure.isArrivalDeparted", 
+			query = "SELECT COUNT(d) FROM Departure d WHERE d.arrival.id=:id "),
 	@NamedQuery(name = "Departure.departuresByMonth", query = "SELECT d FROM Departure d WHERE month(d.departureDate) = :month"),
 
 	@NamedQuery(name = "Departure.departuresByMonthByShip", query = "SELECT d FROM Departure d "
