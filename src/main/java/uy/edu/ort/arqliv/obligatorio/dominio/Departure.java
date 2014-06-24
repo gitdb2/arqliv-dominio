@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -68,7 +69,8 @@ public class Departure implements Serializable {
 	@Column(columnDefinition="TEXT")
 	private String containersDescriptions;
 	
-	@OneToOne(cascade=CascadeType.MERGE)
+	//@ManyToOne(cascade=CascadeType.MERGE)
+	@ManyToOne
 	private Ship ship;
 	
 //	@ManyToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
