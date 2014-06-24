@@ -19,6 +19,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @NamedQueries({
@@ -59,7 +60,13 @@ public class Departure implements Serializable {
 	@ManyToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
 	private List<Container> containers;
 	
+	
 	private double shipTransportedWeightThatDay;
+
+	private double shipCapacityThatDay;
+	
+	@OneToOne(cascade=CascadeType.MERGE)
+	private Arrival arrival;
 
 	public Long getId() {
 		return id;
@@ -123,6 +130,24 @@ public class Departure implements Serializable {
 
 	public void setShipTransportedWeightThatDay(double shipTransportedWeightThatDay) {
 		this.shipTransportedWeightThatDay = shipTransportedWeightThatDay;
+	}
+
+	
+	
+	public double getShipCapacityThatDay() {
+		return shipCapacityThatDay;
+	}
+
+	public void setShipCapacityThatDay(double shipCapacityThatDay) {
+		this.shipCapacityThatDay = shipCapacityThatDay;
+	}
+
+	public Arrival getArrival() {
+		return arrival;
+	}
+
+	public void setArrival(Arrival arrival) {
+		this.arrival = arrival;
 	}
 
 	public List<Long> getContainersIdList() {
