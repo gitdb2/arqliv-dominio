@@ -19,7 +19,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @NamedQueries({
@@ -28,10 +27,16 @@ import javax.validation.constraints.NotNull;
 					+ " d.departureDate = :departureDate "
 					+ " AND c IN (:containerList) "
 					+ " AND c MEMBER OF d.containers "),
+					
 	@NamedQuery(name = "Departure.isArrivalDeparted", 
 			query = "SELECT COUNT(d) FROM Departure d WHERE d.arrival.id=:id "),
+			
+	@NamedQuery(name = "Departure.isArrivalDepartedDifferentDeparture", 
+			query = "SELECT COUNT(d) FROM Departure d WHERE d.arrival.id=:id AND d.id <> :departureId"),
+			
 	@NamedQuery(name = "Departure.departuresByMonth", 
 			query = "SELECT d FROM Departure d WHERE month(d.departureDate) = :month"),
+			
 	@NamedQuery(name = "Departure.isContainerAvailableForDeparture", 
 			query = "SELECT COUNT(*) FROM Arrival a , Container c "
 					+ " WHERE a.arrivalDate <= :departureDate "
