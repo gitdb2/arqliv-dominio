@@ -26,7 +26,12 @@ import javax.persistence.Version;
 			query = "SELECT d FROM Departure d, Container c WHERE "
 					+ " d.departureDate = :departureDate "
 					+ " AND c IN (:containerList) "
-					+ " AND c MEMBER OF d.containers ")
+					+ " AND c MEMBER OF d.containers "),
+	
+	@NamedQuery(name = "Departure.departuresByMonth", query = "SELECT d FROM Departure d WHERE month(d.departureDate) = :month"),
+
+	@NamedQuery(name = "Departure.departuresByMonthByShip", query = "SELECT d FROM Departure d "
+			+ "WHERE month(d.departureDate) = :month " + "AND d.ship.id = :shipId")
 })
 public class Departure implements Serializable {
 
