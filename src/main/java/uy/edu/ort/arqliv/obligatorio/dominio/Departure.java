@@ -58,6 +58,8 @@ public class Departure implements Serializable {
 	
 	@ManyToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
 	private List<Container> containers;
+	
+	private double shipTransportedWeightThatDay;
 
 	public Long getId() {
 		return id;
@@ -114,8 +116,15 @@ public class Departure implements Serializable {
 	public void setContainers(List<Container> containers) {
 		this.containers = containers;
 	}
-
 	
+	public double getShipTransportedWeightThatDay() {
+		return shipTransportedWeightThatDay;
+	}
+
+	public void setShipTransportedWeightThatDay(double shipTransportedWeightThatDay) {
+		this.shipTransportedWeightThatDay = shipTransportedWeightThatDay;
+	}
+
 	public List<Long> getContainersIdList() {
 		List<Long> ret = new ArrayList<Long>();
 		if (containers != null) {
