@@ -30,8 +30,16 @@ import javax.validation.constraints.NotNull;
 					+ " AND c MEMBER OF d.containers "),
 	@NamedQuery(name = "Departure.isArrivalDeparted", 
 			query = "SELECT COUNT(d) FROM Departure d WHERE d.arrival.id=:id "),
-	@NamedQuery(name = "Departure.departuresByMonth", query = "SELECT d FROM Departure d WHERE month(d.departureDate) = :month"),
-
+	@NamedQuery(name = "Departure.departuresByMonth", 
+			query = "SELECT d FROM Departure d WHERE month(d.departureDate) = :month"),
+	@NamedQuery(name = "Departure.isContainerAvailableForDeparture", 
+			query = "SELECT COUNT(*) FROM Arrival a , Container c "
+					+ " WHERE a.arrivalDate <= :departureDate "
+					+ " AND c.id = :id "
+					+ " AND c MEMBER OF a.containers "
+					+ " AND a NOT IN (SELECT d.arrival FROM Departure d) "
+					),
+			
 	@NamedQuery(name = "Departure.departuresByMonthByShip", query = "SELECT d FROM Departure d "
 			+ "WHERE month(d.departureDate) = :month " + "AND d.ship.id = :shipId")
 })
